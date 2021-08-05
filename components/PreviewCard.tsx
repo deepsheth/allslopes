@@ -1,4 +1,5 @@
-import { Box } from '@chakra-ui/layout';
+import { Box, Circle, Square } from '@chakra-ui/layout';
+import { Tooltip } from '@chakra-ui/tooltip';
 
 type PreviewCard = {
     title: string,
@@ -9,54 +10,113 @@ type PreviewCard = {
         advanced: number,
         expert: number,
     },
-    paragraph?: string
 }
 
 export const PreviewCard = ({
-  title, paragraph, location, trailClassification: {
+  title, location, trailClassification, map, skiLifts, elevationDelta, price,
+}: PreviewCard) => {
+  const {
     beginner, intermediate, advanced, expert,
-  },
-}: PreviewCard) => (
-  <Box boxShadow="md" padding="1rem" borderRadius="md" background="white">
-    <Box fontWeight="bold">{title}</Box>
-    <Box fontSize="sm" color="gray.400">{location}</Box>
-    <Box
-      className="trail-classification"
-      borderRadius="lg"
-    >
+  } = trailClassification;
+  const trailClassificationLabel = getTrailClassificationLabel(trailClassification);
+  return (
+    <Box boxShadow="md" padding="1rem" borderRadius="md" background="white">
+      <Box fontWeight="bold">{title}</Box>
+      <Box fontSize="sm" color="gray.400">{location}</Box>
       <Box
-        className="trail-beginner"
-        height=".75rem"
-        margin=".25rem 0"
-        display="inline-block"
-        background="green.200"
-        width={`${beginner}%`}
-      />
-      <Box
-        className="trail-intermediate"
-        height=".75rem"
-        margin=".25rem 0"
-        display="inline-block"
-        background="blue.200"
-        width={`${intermediate}%`}
-      />
-      <Box
-        className="trail-advanced"
-        height=".75rem"
-        margin=".25rem 0"
-        display="inline-block"
-        background="yellow.200"
-        width={`${advanced}%`}
-      />
-      <Box
-        className="trail-expert"
-        height=".75rem"
-        margin=".25rem 0"
-        display="inline-block"
-        background="gray.400"
-        width={`${expert}%`}
-      />
+        className="trail-classification"
+      >
+        <Tooltip
+          label={(
+            <>
+              <Circle size="12px" bg="green.500" display="inline-block" marginRight={2} />
+              {trailClassificationLabel.beginner}
+            </>
+)}
+          hasArrow
+        >
+          <Box
+            className="trail-beginner"
+            height=".75rem"
+            margin=".25rem 0"
+            display="inline-block"
+            background="green.200"
+            borderLeftRadius={6}
+            width={`${beginner}%`}
+          />
+        </Tooltip>
+        <Tooltip
+          label={(
+            <>
+              <Square size="12px" bg="blue.500" display="inline-block" marginRight={2} />
+              {trailClassificationLabel.intermediate}
+            </>
+        )}
+          hasArrow
+        >
+
+          <Box
+            className="trail-intermediate"
+            height=".75rem"
+            margin=".25rem 0"
+            display="inline-block"
+            background="blue.200"
+            width={`${intermediate}%`}
+          />
+        </Tooltip>
+        <Tooltip
+          label={(
+            <>
+              <Square size="12px" bg="black" display="inline-block" marginRight={2} transform="rotate(45deg)" border="1px solid #ccc" />
+              {trailClassificationLabel.advanced}
+            </>
+        )}
+          hasArrow
+        >
+          <Box
+            className="trail-advanced"
+            height=".75rem"
+            margin=".25rem 0"
+            display="inline-block"
+            background="gray.400"
+            width={`${advanced}%`}
+          />
+        </Tooltip>
+        <Tooltip
+          label={(
+            <>
+              <Square size="12px" bg="black" display="inline-block" marginRight={1} transform="rotate(45deg)" border="1px solid #ccc" />
+              <Square size="12px" bg="black" display="inline-block" marginRight={2} transform="rotate(45deg)" border="1px solid #ccc" />
+              {trailClassificationLabel.expert}
+            </>
+        )}
+          hasArrow
+        >
+
+          <Box
+            className="trail-expert"
+            height=".75rem"
+            margin=".25rem 0"
+            display="inline-block"
+            background="gray.600"
+            borderRightRadius={6}
+            width={`${expert}%`}
+          />
+        </Tooltip>
+      </Box>
+
+      <Box>
+        {map}
+      </Box>
     </Box>
-    <Box>{paragraph}</Box>
-  </Box>
-);
+  );
+};
+
+function getTrailClassificationLabel(trailClassification: Record<string, any>) {
+  return {
+    beginner: `${trailClassification.beginner}% beginner`,
+    intermediate: `${trailClassification.intermediate}% intermediate`,
+    advanced: `${trailClassification.advanced}% expert`,
+    expert: `${trailClassification.expert}% expert only`,
+  };
+}
