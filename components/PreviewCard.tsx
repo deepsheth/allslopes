@@ -1,5 +1,6 @@
 import { Box, Circle, Square } from '@chakra-ui/layout';
 import { Tooltip } from '@chakra-ui/tooltip';
+import { useRouter } from 'next/router';
 
 type PreviewCard = {
     title: string,
@@ -13,14 +14,25 @@ type PreviewCard = {
 }
 
 export const PreviewCard = ({
-  title, location, trailClassification, map, skiLifts, elevationDelta, price,
+  id, title, location, trailClassification, map, skiLifts, elevationDelta, price,
 }: PreviewCard) => {
   const {
     beginner, intermediate, advanced, expert,
   } = trailClassification;
+  const router = useRouter();
+
   const trailClassificationLabel = getTrailClassificationLabel(trailClassification);
   return (
-    <Box boxShadow="md" padding="1rem" borderRadius="md" background="white">
+    <Box
+      boxShadow="md"
+      padding="1rem"
+      borderRadius="md"
+      background="white"
+      cursor="pointer"
+      onClick={() => {
+        router.push(`/slopes/${id}`);
+      }}
+    >
       <Box fontWeight="bold">{title}</Box>
       <Box fontSize="sm" color="gray.400">{location}</Box>
       <Box

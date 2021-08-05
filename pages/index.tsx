@@ -3,9 +3,8 @@ import {
   Box, Heading, Link, Stack, Text,
 } from '@chakra-ui/layout';
 import {
-  Button, Container, Image, Input, InputGroup, InputLeftAddon, InputLeftElement,
+  Button, Container, Image, Input, InputGroup, InputLeftAddon,
 } from '@chakra-ui/react';
-import { Waitlist } from 'waitlistapi';
 import { TrendingMountains } from '../components/TrendingMountains';
 
 export default function Home() {
