@@ -8,6 +8,10 @@ export const slopes = [{
     advanced: 23,
     expert: 30,
   },
+  season: 'December — April',
+  skiLifts: 25,
+  elevationDelta: 1245,
+  price: 215,
 }, {
   id: 1,
   title: 'Aspen Snowmass',
@@ -18,6 +22,10 @@ export const slopes = [{
     advanced: 17,
     expert: 30,
   },
+  season: 'December — April',
+  skiLifts: 25,
+  elevationDelta: 1245,
+  price: 215,
 }, {
   id: 2,
   title: 'Telluride Ski Resort',
@@ -28,6 +36,10 @@ export const slopes = [{
     advanced: 15,
     expert: 26,
   },
+  season: 'December — April',
+  skiLifts: 25,
+  elevationDelta: 1245,
+  price: 215,
 }, {
   id: 3,
   title: 'Beaver Creek Resort',
@@ -38,6 +50,10 @@ export const slopes = [{
     advanced: 15,
     expert: 23,
   },
+  season: 'December — April',
+  skiLifts: 25,
+  elevationDelta: 1245,
+  price: 215,
 }, {
   id: 4,
   title: 'Breckenridge Ski Resort',
@@ -48,4 +64,8 @@ export const slopes = [{
     advanced: 24,
     expert: 34,
   },
+  season: 'December — April',
+  skiLifts: 25,
+  elevationDelta: 1245,
+  price: 215,
 }];

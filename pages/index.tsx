@@ -31,7 +31,7 @@ export default function Home() {
             Find your next slope
           </Heading>
           <Heading as="h3" size="md" textAlign="center">
-            The definitive guide for skiing.
+            The ultimate guide for skiing.
           </Heading>
         </Stack>
       </Container>
@@ -94,11 +94,11 @@ export default function Home() {
                   onClick={() => {
                     fetch('https://getwaitlist.com/api/v1/waitlists/submit', {
                       method: 'POST',
-                      body: JSON.stringify({
+                      headers: {
                         api_key: '2IIKTQ',
                         email: 'new@signup.com',
-                        referral_link: 'http://google.com\t',
-                      }),
+                        referral_link: 'http://google.com',
+                      },
                     });
                   }}
                 >
