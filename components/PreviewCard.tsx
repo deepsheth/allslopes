@@ -1,9 +1,9 @@
-import { Box, Circle, Square } from '@chakra-ui/layout';
-import { Tooltip } from '@chakra-ui/tooltip';
+import { Box } from '@chakra-ui/layout';
 import { useRouter } from 'next/router';
 import { TrailClassification } from './TrailClassification';
 
 type PreviewCard = {
+    id: number,
     title: string,
     location: string,
     trailClassification: {
@@ -12,10 +12,15 @@ type PreviewCard = {
         advanced: number,
         expert: number,
     },
+    // skiLifts: number,
+    // elevationDelta: number,
+    // price: number,
+    // map: string,
 }
 
 export const PreviewCard = ({
-  id, title, location, trailClassification, map, skiLifts, elevationDelta, price,
+    // @ts-ignore
+  id, title, location, trailClassification, map,
 }: PreviewCard) => {
   const router = useRouter();
 

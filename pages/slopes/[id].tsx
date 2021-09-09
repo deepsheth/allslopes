@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router';
 import {
-  Box, Text, Container, Heading, Link, Stack,
+  Box, Container, Heading, Link, Stack, Text,
 } from '@chakra-ui/layout';
-import { Button, Image } from '@chakra-ui/react';
+import {
+  Button, Image, Tab, TabList, TabPanel, TabPanels, Tabs,
+} from '@chakra-ui/react';
 import Head from 'next/head';
 import { slopes } from '../../data/slopes';
 import { TrailClassification } from '../../components/TrailClassification';
@@ -12,6 +14,7 @@ const Post = () => {
   const router = useRouter();
   const { id } = router.query;
 
+  // @ts-ignore
   const slope = slopes.find((s) => s.id === +id);
 
   if (!slope) return null;
@@ -23,7 +26,7 @@ const Post = () => {
         <meta name="description" content="Find your next slope" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&family=Inter&display=swap"
           rel="stylesheet"
@@ -40,8 +43,8 @@ const Post = () => {
             title="Vail, Colorado - Winter Map (1:50,000 Scale)"
             frameBorder={0}
             allowFullScreen
-            mozallowfullscreen="true"
-            webkitallowfullscreen="true"
+            // mozallowfullscreen="true"
+            // webkitallowfullscreen="true"
             allow="fullscreen; autoplay; vr"
             // xr-spatial-tracking
             // execution-while-out-of-viewport
@@ -68,6 +71,7 @@ const Post = () => {
           </Text>
 
           <Box margin={4} />
+          {/* @ts-ignore */}
           <FactSheet slope={slope} />
 
           <Text>
@@ -82,24 +86,26 @@ const Post = () => {
           </Text>
 
         </Box>
+
+        <Box margin={4} />
+
+        <Tabs>
+          <TabList>
+            <Tab isDisabled>Trails</Tab>
+            <Tab isDisabled>Weather</Tab>
+            <Tab isDisabled>Reviews</Tab>
+            <Tab isDisabled>Photos</Tab>
+            <Tab isDisabled>Activities</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>1</TabPanel>
+            <TabPanel>2</TabPanel>
+            <TabPanel>3</TabPanel>
+          </TabPanels>
+        </Tabs>
+
       </Container>
 
-      <Stack spacing={6}>
-        <Box margin="5rem 0">
-          <Box py="6rem" px="3rem" background="white">
-            <Heading size="lg">Slopes For Every Preference</Heading>
-            <Box>
-              <Box display="flex" justifyContent="space-between" paddingTop={12} paddingBottom={0}>
-                <Button colorScheme="blackAlpha" variant="ghost">Top Rated</Button>
-                <Button colorScheme="blackAlpha" variant="ghost">Beginners</Button>
-                <Button colorScheme="blackAlpha" variant="ghost">Families</Button>
-                <Button colorScheme="blackAlpha" variant="ghost">Affordable</Button>
-                <Button colorScheme="blackAlpha" variant="ghost">Snow Reliability</Button>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-      </Stack>
     </>
   );
 };

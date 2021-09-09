@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import { Box, Heading, Text } from '@chakra-ui/layout';
+import { Heading, Text } from '@chakra-ui/layout';
 
+// @ts-ignore
 export const FactSheet: FC = ({ slope }) => (
   <>
     <Heading size="md">Facts</Heading>
@@ -24,7 +25,9 @@ export const FactSheet: FC = ({ slope }) => (
         {slope?.price}
       </Text>
       {' '}
-      Day Pass <Text display="inline-block" color="red.300" fontSize={12} mx={2}>Above average</Text>
+      Day Pass
+      {' '}
+      <Text display="inline-block" color="red.300" fontSize={12} mx={2}>Above average</Text>
     </Text>
   </>
 );

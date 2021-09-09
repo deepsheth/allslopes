@@ -26,5 +26,7 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }], // should add ".ts" if typescript project
     'import/prefer-default-export': 0,
     'no-use-before-define': ['error', { functions: false, classes: false }],
+
+    'no-redeclare': 0,
   },
 };
